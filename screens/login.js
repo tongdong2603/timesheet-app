@@ -13,17 +13,17 @@ import Card from "../components/Card";
 
 const Login = props => {
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('')
+    const [password, setPassword] = useState('');
     const emailHandle = inputText => {
         setEmail(inputText)
-    }
+    };
     const passwordHandle = inputText => {
         setPassword(inputText)
-    }
+    };
 
     const login = () => {
         props.onLogin({email, password})
-    }
+    };
 
 
     return (<KeyboardAvoidingView
@@ -40,6 +40,7 @@ const Login = props => {
                         keyboardType="email-address"
                         autoCapitalize="none"
                         onChangeText ={emailHandle}
+                        style={styles.input}
                     />
                     <Input
                         id="password"
@@ -49,7 +50,7 @@ const Login = props => {
                         onChangeText ={passwordHandle}
                     />
                     <View style={styles.buttonContainer}>
-                        <Button title="Login" onPress={() => {}} />
+                        <Button title="Login" onPress={login} />
                     </View>
                     <View style={styles.buttonContainer}>
                         <Button
@@ -61,7 +62,7 @@ const Login = props => {
             </Card>
         </LinearGradient>
     </KeyboardAvoidingView>);
-}
+};
 
 Login.navigationOptions = {
     headerTitle: 'Login'

@@ -1,43 +1,37 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, {useState} from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Header from "./components/Header";
 import { Card} from "react-native-elements";
-import { Calendar } from "react-native-calendars"
-import { MenuProvider } from 'react-native-popup-menu'
-import Login from './screens/Login'
+import { Calendar } from "react-native-calendars";
+import { MenuProvider } from 'react-native-popup-menu';
+
+import Login from './screens/login';
+import HomeScreen from "./screens/HomeScreen";
 
 export default function App() {
-
-
+  const [emailLogin, setEmailLogin] = useState('')
+  const [passwordLogin, setPasswordLogin] = useState('')
+  let content;
   const login = (params) => {
-    const {email, password} = params;
-    if(password === '123456' && email === 'admin@gmail.com') {
-      content =
-          <MenuProvider>
-            <View style={styles.screen}>
-              <Header title="Time Sheet" />
-              <Card>
-                <Text>Miss Working Time</Text>
-              </Card>
-              <Card>
-                <Text>Miss OT request</Text>
-              </Card>
-              <Card>
-                <Text>OverTime Hours</Text>
-              </Card>
-              <Card>
-                <Text>OT Over limit</Text>
-              </Card>
-              <Calendar></Calendar>
-            </View>
-          </MenuProvider>
-    }
-  }
-  let content = <Login onLogin = {login.bind(this, 'test')}></Login>;
 
+    const {email, password} = params;
+    setEmailLogin(email);
+    setPasswordLogin(password)
+
+  };
+  if(emailLogin && emailLogin === 'admin@gmail.com' && passwordLogin && passwordLogin === '123456') {
+    content = (<HomeScreen/>)
+  }
+  if(content === undefined) {
+    content = <Login onLogin = {login.bind(this)}></Login>
+  }
+  console.log('content: ', content)
   return (
-      {content}
+      <MenuProvider>
+        {content}
+      </MenuProvider>
+
   );
 }
 
@@ -48,5 +42,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  screen: {
+    flex: 1
+  }
 });
 

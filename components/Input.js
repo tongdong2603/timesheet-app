@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { View, Text, TextInput, StyleSheet } from 'react-native';
 
 const Input = props => {
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     input: {
         paddingHorizontal: 2,
         paddingVertical: 5,
-        borderBottomColor: 'grey',
+        borderBottomColor: '#ccc',
         borderBottomWidth: 1
     },
     errorContainer: {
@@ -34,3 +34,5 @@ const styles = StyleSheet.create({
 });
 
 export default Input;
+
+
