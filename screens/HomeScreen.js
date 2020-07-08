@@ -1,15 +1,19 @@
 import React, {useState} from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { Card} from "react-native-elements";
+import { Card, Header } from "react-native-elements";
 import { Calendar } from "react-native-calendars"
 
-import Header from "../components/Header";
 
-const HomeScreen = (props) => {
+const HomeScreen = ({ navigation }) => {
+
   return (
     <View style={styles.screen}>
       <View>
-        <Header title="Time Sheet" />
+        <Header
+            leftComponent={{ icon: 'menu', color: '#fff', onPress: () => navigation.toggleDrawer()}}
+            centerComponent={{ text: 'Time Sheet', style: { color: '#fff', fontSize: 24, fontWeight: 'bold',  } }}
+            rightComponent={{ icon: 'home', color: '#fff' }}
+        />
         <Card>
           <Text>Miss Working Time</Text>
         </Card>

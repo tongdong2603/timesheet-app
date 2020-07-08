@@ -5,6 +5,14 @@ import Header from "./components/Header";
 import { Card} from "react-native-elements";
 import { Calendar } from "react-native-calendars";
 import { MenuProvider } from 'react-native-popup-menu';
+import { DrawerActions } from 'react-navigation'
+import { NavigationContainer } from '@react-navigation/native';
+import {
+  createDrawerNavigator,
+  DrawerContentScrollView,
+  DrawerItemList,
+  DrawerItem,
+} from '@react-navigation/drawer';
 
 import Login from './screens/login';
 import HomeScreen from "./screens/HomeScreen";
@@ -26,11 +34,20 @@ export default function App() {
   if(content === undefined) {
     content = <Login onLogin = {login.bind(this)}></Login>
   }
-  console.log('content: ', content)
+  console.log('content: ', content);
+  const Drawer = createDrawerNavigator();
+
+  function MyDrawer() {
+    return (
+        <Drawer.Navigator >
+          <Drawer.Screen name="Home Screen" component={HomeScreen} />
+        </Drawer.Navigator>
+    );
+  }
   return (
-      <MenuProvider>
-        {content}
-      </MenuProvider>
+      <NavigationContainer>
+        <MyDrawer/>
+      </NavigationContainer>
 
   );
 }
